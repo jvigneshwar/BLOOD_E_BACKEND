@@ -23,11 +23,9 @@ app.post('/register',async (req,res)=>{
             city : req.body.city,
             mobileNo : req.body.mobileNo
         })
-        console.log(user);
         res.json({status:"ok"});
     }
     catch(err){
-        console.log(err);
         res.json({status:"failed"})
     }
 })
@@ -35,12 +33,11 @@ app.post('/register',async (req,res)=>{
 app.get('/showDetails',async (req,res)=>{
     try{
         const data = await User.find({bloodGroup:req.headers.bloodgroup , city:req.headers.city},{_id:0,__v:0})
-        console.log(data);
+
             res.json(data);
     }
 
     catch(err){
-        console.log(err);
     }
 })
 
