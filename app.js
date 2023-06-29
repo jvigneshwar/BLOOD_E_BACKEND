@@ -4,7 +4,11 @@ const mongoose = require("mongoose");
 const User = require("./Models/userSchema");
 
 mongoose.connect("mongodb+srv://jv8110909191:ASas12.,@cluster0.m8dnfoi.mongodb.net/?retryWrites=true&w=majority")
-.then(()=>{console.log("DBconnected")})
+.then(()=>{
+    app.listen(4000,()=>{
+       console.log("connected");
+    })
+})
 .catch(()=>{console.log("error");})
 
 const app = express();
@@ -40,8 +44,6 @@ app.get('/showDetails',async (req,res)=>{
     }
 })
 
-app.listen(4000,"localhost",()=>{
-    console.log("connected");
-})
+
 
 
