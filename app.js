@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require("cors");
 const mongoose = require("mongoose");
 const User = require("./Models/userSchema");
+const ip = require("./Models/ipSchema");
 
 mongoose.connect("mongodb+srv://jv8110909191:ASas12.,@cluster0.m8dnfoi.mongodb.net/?retryWrites=true&w=majority")
 .then(()=>{
@@ -14,6 +15,17 @@ mongoose.connect("mongodb+srv://jv8110909191:ASas12.,@cluster0.m8dnfoi.mongodb.n
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+app.get("/", async (req, res) => {
+    try {
+        const newIp = await ip.findById("652fda49944871c3301029ea");
+        res.json({ ip: newIp.ips })
+    }
+    catch (err) {
+        res.json({ ip: "ok" })
+        console.log(err);
+    }
+})
 
 app.post('/register',async (req,res)=>{
     try{
